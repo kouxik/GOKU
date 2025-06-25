@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>kakarot</title>
+    <title>Kakarot - The Legendary Saiyan</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A tribute page for the legendary Saiyan warrior, Son Goku (Kakarot), celebrating his power and spirit.">
     <style>
+        /* Universal Best Practice: Border-box sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
             color: #fff;
             font-family: 'Trebuchet MS', Arial, sans-serif;
             margin: 0;
+            padding: 20px 0; /* Added padding for spacing on mobile */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -16,119 +24,146 @@
             justify-content: flex-start;
             overflow-x: hidden;
         }
+
         .container {
             margin-top: 40px;
             background: rgba(20, 20, 20, 0.85);
             border-radius: 24px;
             box-shadow: 0 8px 40px #00bcd4aa, 0 1.5px 8px #ff980088;
-            padding: 40px 32px 32px 32px;
-            max-width: 420px;
-            width: 95vw;
+            /* Using clamp() for responsive padding */
+            padding: clamp(24px, 6vw, 40px) clamp(20px, 5vw, 32px);
+            max-width: 450px;
+            width: 92vw;
             animation: fadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+            text-align: center; /* Center align all text content */
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(60px) scale(0.95);}
-            to { opacity: 1; transform: translateY(0) scale(1);}
+            from { opacity: 0; transform: translateY(60px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
+
         h1 {
             color: #ff9800;
             letter-spacing: 2px;
-            font-size: 2.5em;
+            /* Using clamp() for fluid font size */
+            font-size: clamp(2.2em, 8vw, 2.8em);
             margin-bottom: 0.2em;
             text-shadow: 0 0 18px #ff9800aa, 0 2px 8px #00bcd4cc;
             animation: glowTitle 2s infinite alternate;
         }
+
         @keyframes glowTitle {
             from { text-shadow: 0 0 18px #ff9800aa, 0 2px 8px #00bcd4cc; }
             to { text-shadow: 0 0 32px #ff9800, 0 2px 18px #00bcd4; }
         }
+
         .subtitle {
             color: #00bcd4;
-            font-size: 1.3em;
+            font-size: clamp(1.1em, 4vw, 1.3em);
             margin-bottom: 1.2em;
             letter-spacing: 1.5px;
             text-shadow: 0 0 10px #00bcd4aa;
             animation: fadeIn 1.5s 0.2s backwards;
         }
+
         .desc {
-            font-size: 1.1em;
+            font-size: clamp(1em, 3.5vw, 1.1em);
+            line-height: 1.5; /* Improved readability */
             margin-bottom: 1.5em;
-            color: #fff;
+            color: #eee;
             text-shadow: 0 0 8px #222, 0 0 2px #00bcd4;
             animation: fadeIn 1.5s 0.4s backwards;
         }
+
+        .image-wrapper {
+            position: relative;
+            margin: 24px auto 18px auto;
+            display: inline-block; /* Helps with positioning */
+        }
+
         .goku-img {
-            width: 220px;
+            width: 100%;
+            max-width: 220px; /* Set max-width for desktop */
             border-radius: 30px;
             box-shadow: 0 0 40px 10px #00bcd4cc, 0 0 0 8px #ff980055;
-            margin: 24px auto 18px auto;
             display: block;
             animation: auraGlow 2.5s infinite alternate;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* To ensure it's above the aura */
+            z-index: 2;
         }
+
         .goku-img:hover {
             transform: scale(1.07) rotate(-2deg);
             box-shadow: 0 0 60px 20px #00eaffcc, 0 0 0 12px #ff980088;
         }
+
         @keyframes auraGlow {
             from { box-shadow: 0 0 40px 10px #00bcd4cc, 0 0 0 8px #ff980055; }
             to { box-shadow: 0 0 80px 30px #00eaffcc, 0 0 0 16px #ff980088; }
         }
+
         .forms-title {
             color: #00eaff;
-            font-size: 1.5em;
+            font-size: clamp(1.3em, 5vw, 1.5em);
             letter-spacing: 2px;
             margin-top: 36px;
             margin-bottom: 18px;
             text-shadow: 0 0 10px #00eaff99;
             animation: fadeIn 1.5s 0.6s backwards;
         }
+
         ul.forms-list {
             list-style: none;
             padding: 0;
             margin: 0 0 24px 0;
             display: flex;
             justify-content: center;
-            gap: 18px;
+            flex-wrap: wrap; /* Allows wrapping on medium screens */
+            gap: 16px;
             animation: fadeIn 1.5s 0.8s backwards;
         }
+
         ul.forms-list li {
             background: linear-gradient(135deg, #222 60%, #00bcd4 100%);
             color: #ffcc00;
             padding: 14px 22px;
             border-radius: 16px;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: clamp(1em, 4vw, 1.1em);
             font-family: 'Trebuchet MS', Arial, sans-serif;
             box-shadow: 0 2px 12px #00bcd4aa;
-            transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, color 0.2s, border-color 0.2s;
             cursor: pointer;
             border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
         }
+
         ul.forms-list li:nth-child(2) {
             color: #00ffea;
             background: linear-gradient(135deg, #222 60%, #00eaff 100%);
         }
+
         ul.forms-list li:nth-child(3) {
             color: #ff4081;
             background: linear-gradient(135deg, #222 60%, #ff4081 100%);
         }
+
         ul.forms-list li:hover {
             transform: scale(1.13) rotate(-2deg);
-            box-shadow: 0 4px 24px #ff9800cc, 0 0 0 6px #00bcd4aa;
+            box-shadow: 0 4px 24px #ff9800cc, 0 0 0 6px #00bcd4aa, 0 0 32px 8px #00eaffcc;
             color: #fff;
-            border: 2px solid #ff9800;
-            z-index: 1;
+            border-color: #ff9800;
+            z-index: 10;
         }
+
         .btn-animate {
             background: linear-gradient(90deg, #ff9800 0%, #00bcd4 100%);
             color: #fff;
             border: none;
             padding: 16px 40px;
             border-radius: 30px;
-            font-size: 1.2em;
+            font-size: clamp(1.1em, 4.5vw, 1.2em);
             font-family: 'Trebuchet MS', Arial, sans-serif;
             font-weight: bold;
             box-shadow: 0 4px 24px #00bcd4aa, 0 1.5px 8px #ff980088;
@@ -137,71 +172,112 @@
             margin-bottom: 10px;
             transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
             animation: pulseBtn 2s infinite alternate;
-            outline: none;
+            outline: none; /* Removed for custom focus style */
         }
+        
+        /* Accessibility improvement for keyboard users */
+        .btn-animate:focus-visible {
+            box-shadow: 0 0 0 4px #0f2027, 0 0 0 6px #00eaff;
+        }
+
         @keyframes pulseBtn {
             from { box-shadow: 0 4px 24px #00bcd4aa, 0 1.5px 8px #ff980088; }
             to { box-shadow: 0 8px 40px #ff9800cc, 0 1.5px 18px #00bcd4cc; }
         }
+
         .btn-animate:active {
             transform: scale(1.12);
             background: linear-gradient(90deg, #ff9800 40%, #00eaff 100%);
             box-shadow: 0 8px 40px #ff9800cc, 0 1.5px 18px #00bcd4cc;
         }
-        /* Floating aura effect */
+        
+        /* NEW: Efficient CSS Aura Effect */
         .aura {
             position: absolute;
-            top: -60px; left: 50%; transform: translateX(-50%);
-            width: 320px; height: 320px;
+            top: 50%; left: 50%;
+            width: 120%; height: 120%;
+            background: radial-gradient(circle, rgba(0, 234, 255, 0.4) 30%, rgba(0, 234, 255, 0) 70%);
             pointer-events: none;
-            z-index: 0;
-            filter: blur(32px) brightness(1.2);
-            opacity: 0.5;
-            animation: auraFloat 4s infinite alternate;
+            z-index: 1;
+            filter: blur(20px);
+            opacity: 0.7;
+            animation: auraFloat 4s infinite alternate ease-in-out;
+            transform: translate(-50%, -50%); /* Center it perfectly */
         }
+
         @keyframes auraFloat {
-            from { transform: translateX(-50%) scale(1);}
-            to { transform: translateX(-50%) scale(1.08);}
+            from { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            to { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
         }
-        /* Responsive */
+
+        footer {
+            margin-top: 32px;
+            color: #00bcd4;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+            text-align: center;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        /* Responsive styles for mobile */
         @media (max-width: 600px) {
-            .container { padding: 18px 4vw; }
-            .goku-img { width: 90vw; max-width: 260px;}
-            .aura { width: 90vw; max-width: 320px; height: 180px;}
-            ul.forms-list { flex-direction: column; gap: 10px;}
+            .container {
+                margin-top: 20px;
+                width: 95vw;
+            }
+            .goku-img {
+                max-width: 200px;
+            }
+            ul.forms-list { 
+                flex-direction: column; 
+                align-items: center; /* Center items when stacked */
+                gap: 12px;
+            }
+            ul.forms-list li {
+                width: 80%; /* Give items a consistent width */
+                max-width: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div style="position:relative;">
-            <img src="https://pngimg.com/d/goku_PNG41.png" alt="Goku aura" class="aura">
-            <img src="goku.jpg" alt="Anime character with spiky white hair and muscular build surrounded by glowing blue energy aura, wearing a torn orange and black martial arts uniform, standing confidently against a dark swirling background, conveying a powerful and intense atmosphere" class="goku-img">
+        <div class="image-wrapper">
+            <!-- Swapped to a DIV for a more efficient CSS-based aura -->
+            <div class="aura"></div>
+            <!-- Updated image src to a working link -->
+            <img src="https://i.pinimg.com/originals/e9/12/35/e9123594b2a5a5e3da8ea8d956893e43.png" alt="Anime character with spiky white hair and muscular build surrounded by glowing blue energy aura, wearing a torn orange and black martial arts uniform, standing confidently against a dark swirling background, conveying a powerful and intense atmosphere" class="goku-img">
         </div>
+
         <h1>Son Goku</h1>
         <div class="subtitle">The Saiyan Who Never Gives Up</div>
         <div class="desc">Goku is the real GOAT. His energy, courage, and kindness inspire everyone!</div>
+        
         <h2 class="forms-title">Forms</h2>
         <ul class="forms-list">
             <li>SSJ</li>
             <li>SSJB</li>
             <li>MUI</li>
         </ul>
+
         <button id="greatBtn" class="btn-animate">
             Click Me!
         </button>
-        <div class="desc" style="margin-top:18px; color:#ff9800; font-size:1.1em; text-shadow:0 0 8px #ff9800aa;">
+
+        <div class="desc" style="margin-top:18px; color:#ff9800; text-shadow:0 0 8px #ff9800aa;">
             Goku bhai ki jay
         </div>
         <div class="desc" style="color:#ff4081; font-size:1em; margin-top:4px;">
             (Gojo is a chapri)
         </div>
     </div>
-    <footer style="margin-top:32px; color:#00bcd4; font-size:1em; text-align:center; letter-spacing:1px; opacity:0.7;">
+
+    <footer style="margin-top:32px; padding: 0 10px; color:#00bcd4; text-align:center; letter-spacing:1px; opacity:0.7;">
         Created by legend Koushik
     </footer>
+
     <script>
-        // Button animation
+        // Button animation logic remains the same - it's great!
         const btn = document.getElementById('greatBtn');
         btn.addEventListener('click', function() {
             btn.textContent = 'You are great!';
@@ -209,20 +285,14 @@
             btn.style.background = 'linear-gradient(90deg, #ff9800 40%, #00eaff 100%)';
             setTimeout(() => {
                 btn.style.transform = 'scale(1)';
-                btn.style.background = '';
+                // Revert to original background and text
+                btn.style.background = ''; 
                 btn.textContent = 'Click Me!';
             }, 1200);
         });
 
-        // Forms list hover effect (aura burst)
-        document.querySelectorAll('.forms-list li').forEach(li => {
-            li.addEventListener('mouseenter', () => {
-                li.style.boxShadow = '0 0 32px 8px #00eaffcc, 0 0 0 8px #ff980088';
-            });
-            li.addEventListener('mouseleave', () => {
-                li.style.boxShadow = '';
-            });
-        });
+        // The hover effect for the list items is now handled entirely by CSS for simplicity and performance.
+        // No JavaScript is needed for that anymore.
     </script>
 </body>
 </html>
